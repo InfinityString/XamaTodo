@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="XamaTodo.MainPage">
+
+    <StackLayout BackgroundColor="White">
+        <StackLayout Padding="10">
+            <Label Padding="10" TextColor="#72bcd4" FontSize="Large" FontAttributes="Bold" HorizontalTextAlignment="Center"  Text="XamaTodo"></Label>
+            <Frame Padding="10" BorderColor="#add8e6" BackgroundColor="White"  HeightRequest="40" CornerRadius="10">
+                <Editor x:Name="TextBox1" Placeholder="Enter To do here"/>
+            </Frame>
+            <Frame Padding="10" BorderColor="#add8e6" BackgroundColor="White"  HeightRequest="40">
+                <TimePicker x:Name="TimeBox" Time="{Binding SelectedTime}" />
+            </Frame>
+            <Button HorizontalOptions="FillAndExpand" Clicked="Button_Clicked" Text="Submit" VerticalOptions="Center" BackgroundColor="#add8e6" ></Button>
+            <Label FontSize="Medium" TextColor="Black" FontAttributes="Italic" Text="Things you need to do"></Label>
+        </StackLayout>     
+        
+        <ScrollView VerticalOptions="FillAndExpand">
+
+            <StackLayout Spacing="0" BindableLayout.ItemsSource="{Binding AllToDo}" BindableLayout.EmptyView="No Todo's here">
+                <BindableLayout.ItemTemplate>
+                    <DataTemplate>
+                        <Frame>
+
+                            <SwipeView>
+                                <SwipeView.LeftItems>
+                                    <SwipeItems>
+                                        <SwipeItem Text="Delete"                       
+                       BackgroundColor="#add8e6"
+                        Invoked="SwipeItem_Invoked" />
+                                       
+                                    </SwipeItems>
+                                </SwipeView.LeftItems>
+                                <StackLayout BackgroundColor="white" Orientation="Horizontal">
+
+
+                                    <CheckBox Color="#add8e6" VerticalOptions="CenterAndExpand" IsChecked="{Binding Done}" >
+                                    </CheckBox>
+                                    <StackLayout>
+                                        <Label FontSize="Medium" TextColor="black" Text="{Binding TodoText}"></Label>
+                                        <Label FontSize="Medium" TextColor="black" Text="{Binding TodoTime}"></Label>
+                                    </StackLayout>
+
+
+                                </StackLayout>
+                            </SwipeView>
+
+                        </Frame>
+
+                    </DataTemplate>
+                </BindableLayout.ItemTemplate>
+
+            </StackLayout>
+        </ScrollView>
+
+
+
+    </StackLayout>
+
+</ContentPage>
